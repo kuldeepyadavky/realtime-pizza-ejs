@@ -24,11 +24,19 @@ nav li a{
 	background: $secondary;
 }
 
+.btn-primary{
+	background: $primary;
+	transition: $smooth;
+	&:hover{
+		background: $primary_hover;
+	 }
+}
+
 .size{
 	background: $secondary;
 }
 
-.add_to_cart{
+.btn-{
 	 border: 2px solid $primary;
 	 color: $primary;
 	 transition: $smooth;
@@ -38,3 +46,22 @@ nav li a{
 		color: $pure;
 	 }
 }
+
+.cart{
+	background: $secondary;
+	.amount{
+		color: $primary;
+	}
+}
+
+.login{
+	background: $secondary;
+	min-height: calc(100vh - 86px);
+	a{
+		color: $primary;
+		&:hover{
+			color: $primary_hover;
+		}
+	}
+}
+
