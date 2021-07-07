@@ -10,6 +10,8 @@ const mongoose = require('mongoose')
 const flash = require('express-flash')
 const mongoURI = 'mongodb://localhost/pizza'
 const MongoDbStore = require('connect-mongo')(session)
+const passport = require('passport')
+
 
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
@@ -44,15 +46,24 @@ app.use(
 	}),
 )
 
+const passportInit = require('./app/config/passport')
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 app.use(flash())
 
 //Assets
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
+
 app.use(express.json())
 
 //Global middleware
 app.use((req, res, next) => {
 	res.locals.session = req.session
+	res.locals.user = req.user
 	next()
 })
 
